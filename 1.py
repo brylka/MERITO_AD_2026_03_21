@@ -33,7 +33,7 @@ print(f"Odchylenie std:     {cv_scores.std():.4f}")
 random_forest_train_acc = random_forest.score(X_train, y_train)
 random_forest_test_acc = random_forest.score(X_test, y_test)
 
-print("POJEDYNCZE DRZEWO DECYZYJNE")
+print("LOSOWY LAS")
 print("-" * 40)
 print(f"Dokładność na zbiorze treningowym: {random_forest_train_acc:.4f}")
 print(f"Dokładność na zbiorze testowym:    {random_forest_test_acc:.4f}")
