@@ -17,10 +17,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 # Modele do porównania
 models = {
     'Decision Tree': DecisionTreeClassifier(random_state=42),
-    'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1),
-    'XGBoost': xgb.XGBClassifier(n_estimators=100, learning_rate=0.1,
+    'Random Forest': RandomForestClassifier(n_estimators=500, random_state=42, n_jobs=-1),
+    'XGBoost': xgb.XGBClassifier(n_estimators=500, learning_rate=0.01,
                                  random_state=42, n_jobs=-1, verbosity=0),
-    'LightGBM': lgb.LGBMClassifier(n_estimators=100, learning_rate=0.1,
+    'LightGBM': lgb.LGBMClassifier(n_estimators=500, learning_rate=0.01,
                                     random_state=42, verbose=-1)
 }
 

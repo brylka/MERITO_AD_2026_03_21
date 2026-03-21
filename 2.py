@@ -40,6 +40,7 @@ plt.legend()
 plt.show()
 
 # dodać cv + wykres
+# dodać XGBoost oraz LightGBM
 
 
 # print(n_trees_range)
