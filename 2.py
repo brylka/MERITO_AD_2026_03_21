@@ -1,10 +1,10 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_iris, load_wine
+from sklearn.datasets import load_iris, load_digits
 from sklearn.model_selection import train_test_split, cross_val_score
 import matplotlib.pyplot as plt
 
-iris = load_iris()
-X, y = iris.data, iris.target
+data = load_digits()
+X, y = data.data, data.target
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=42
