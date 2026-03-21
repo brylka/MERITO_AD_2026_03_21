@@ -9,14 +9,26 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=42
 )
 
-for n_trees in [10, 25, 50, 100, 150, 200, 300, 500, 750, 1000]:
+n_trees_range = [10, 25, 50, 100, 150, 200, 300, 500, 750, 1000]
+train_scores = []
+test_scores = []
+oob_scores = []
+
+for n_trees in n_trees_range:
     random_forest = RandomForestClassifier(
         n_estimators=n_trees,
         oob_score=True,
         random_state=42)
     random_forest.fit(X_train, y_train)
 
-    print(f"Ilość drzew: {n_trees}:")
-    print(f"Dokładność na zbiorze treningowym: {random_forest.score(X_train, y_train):.4f}")
-    print(f"Dokładność na zbiorze testowym:    {random_forest.score(X_test, y_test):.4f}")
-    print(f"OOB score:                         {random_forest.oob_score_:.4f}")
+    train_scores.append(random_forest.score(X_train, y_train))
+    test_scores.append(random_forest.score(X_test, y_test))
+    oob_scores.append(random_forest.oob_score_)
+    # print(f"Ilość drzew: {n_trees}:")
+    # print(f"Dokładność na zbiorze treningowym: {random_forest.score(X_train, y_train):.4f}")
+    # print(f"Dokładność na zbiorze testowym:    {random_forest.score(X_test, y_test):.4f}")
+    # print(f"OOB score:                         {random_forest.oob_score_:.4f}")
+print(n_trees_range)
+print(train_scores)
+print(test_scores)
+print(oob_scores)
