@@ -24,7 +24,7 @@ models = {
                                     random_state=42, verbose=-1)
 }
 
-text = "PORÓWNANIE MODELI - IRIS\n"
+text = "PORÓWNANIE MODELI\n"
 text += "=" * 70 + "\n"
 text += f"{'Model':<20} {'Train Acc':<12} {'Test Acc':<12} {'CV Mean':<12} {'CV Std':<10} {'Czas':<8}\n"
 text += "-" * 70 + "\n"
