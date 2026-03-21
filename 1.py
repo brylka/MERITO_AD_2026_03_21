@@ -13,7 +13,13 @@ X_train, X_test, y_train, y_test = train_test_split(
 single_tree = DecisionTreeClassifier(random_state=42)
 single_tree.fit(X_train, y_train)
 
-random_forest = RandomForestClassifier(random_state=42)
+random_forest = RandomForestClassifier(
+    n_estimators=250,
+    max_depth=10,
+    min_samples_split=2,
+    max_features='sqrt',
+    bootstrap=True,
+    random_state=42)
 random_forest.fit(X_train, y_train)
 
 train_acc = single_tree.score(X_train, y_train)
