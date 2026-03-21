@@ -1,8 +1,8 @@
 import lightgbm as lgb
-import xgboost as xdb
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris, load_wine
 from sklearn.model_selection import train_test_split, cross_val_score
+import warnings
+warnings.filterwarnings("ignore", message="X does not have valid feature names")
 
 iris = load_iris()
 X, y = iris.data, iris.target
