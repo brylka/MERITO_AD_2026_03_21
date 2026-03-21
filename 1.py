@@ -1,6 +1,6 @@
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_iris
+from sklearn.datasets import load_iris, load_wine
 from sklearn.model_selection import train_test_split, cross_val_score
 
 iris = load_iris()
@@ -14,11 +14,12 @@ single_tree = DecisionTreeClassifier(random_state=42)
 single_tree.fit(X_train, y_train)
 
 random_forest = RandomForestClassifier(
-    n_estimators=250,
-    max_depth=10,
+    n_estimators=100,
+    max_depth=None,
     min_samples_split=2,
     max_features='sqrt',
     bootstrap=True,
+    oob_score=True,
     random_state=42)
 random_forest.fit(X_train, y_train)
 
@@ -43,6 +44,7 @@ print("LOSOWY LAS")
 print("-" * 40)
 print(f"Dokładność na zbiorze treningowym: {random_forest_train_acc:.4f}")
 print(f"Dokładność na zbiorze testowym:    {random_forest_test_acc:.4f}")
+print(f"OOB score:                         {random_forest.oob_score_:.4f}")
 
 random_forest_cv_scores = cross_val_score(random_forest, X, y, cv=10)
 print(f"Walidacja cv:")
