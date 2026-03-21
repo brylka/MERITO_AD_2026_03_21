@@ -1,6 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris, load_wine
 from sklearn.model_selection import train_test_split, cross_val_score
+import matplotlib.pyplot as plt
 
 iris = load_iris()
 X, y = iris.data, iris.target
@@ -24,11 +25,19 @@ for n_trees in n_trees_range:
     train_scores.append(random_forest.score(X_train, y_train))
     test_scores.append(random_forest.score(X_test, y_test))
     oob_scores.append(random_forest.oob_score_)
-    # print(f"Ilość drzew: {n_trees}:")
-    # print(f"Dokładność na zbiorze treningowym: {random_forest.score(X_train, y_train):.4f}")
-    # print(f"Dokładność na zbiorze testowym:    {random_forest.score(X_test, y_test):.4f}")
-    # print(f"OOB score:                         {random_forest.oob_score_:.4f}")
-print(n_trees_range)
-print(train_scores)
-print(test_scores)
-print(oob_scores)
+
+plt.plot(n_trees_range, train_scores, 'b-o', label="treningowa")
+plt.plot(n_trees_range, test_scores, 'r-s', label="testowa")
+plt.plot(n_trees_range, oob_scores, 'g-^', label="OOB")
+plt.xlabel('Ilość drzew')
+plt.ylabel('Dokładność')
+plt.title('Dokładność a Liczba drzew')
+plt.grid(True)
+plt.legend()
+plt.show()
+
+
+# print(n_trees_range)
+# print(train_scores)
+# print(test_scores)
+# print(oob_scores)
