@@ -1,12 +1,25 @@
 import joblib
-from flask import Flask, render_template
+import numpy as np
+from flask import Flask, render_template, request
+from PIL import Image
 
 model = joblib.load('model.joblib')
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    digit = None
+    if request.method == 'POST':
+        file = request.files['image']
+        img = Image.open(file).convert('L')
+        img = img.resize((8,8))
+        data = np.array(img)
+        data = 16 - data / 255 * 16
+        data = data.flatten().reshape(1,-1)
+        digit = model.predict(data)[0]
+        print(digit)
+
+    return render_template('index.html', digit=digit)
 
 if __name__ == '__main__':
     app.run(debug=True)
