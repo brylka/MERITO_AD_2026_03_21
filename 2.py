@@ -15,6 +15,9 @@ train_scores = []
 test_scores = []
 oob_scores = []
 
+# wymień RandomForest na XGBoost
+# Dodatkowe: Porównanie RandomForest oraz XGBoost zależne od ilości drzew
+
 for n_trees in n_trees_range:
     random_forest = RandomForestClassifier(
         n_estimators=n_trees,
