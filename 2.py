@@ -36,6 +36,8 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
+# dodać cv + wykres
+
 
 # print(n_trees_range)
 # print(train_scores)
