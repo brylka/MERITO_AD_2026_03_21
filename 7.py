@@ -10,7 +10,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 param_grid = {
-    'n_estimators' : [10, 25, 50, 100],
+    'n_estimators' : range(10,511,50),
     'max_depth' : [3, 4, 5, 6, None]
 }
 
