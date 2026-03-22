@@ -11,8 +11,10 @@ X, y = data.data, data.target
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 param_grid = {
-    'n_estimators' : range(10,511,50),
-    'max_depth' : [3, 4, 5, 6, None]
+    'n_estimators' : [10, 60, 110],
+    'max_depth' : [3, 4, 5]
+#    'n_estimators' : [10,60,110,160,210,260,310,360,410,460,510],
+#    'max_depth' : [3, 4, 5, 6, None]
 }
 
 model = RandomForestClassifier(random_state=42)
