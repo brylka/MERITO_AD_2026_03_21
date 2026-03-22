@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
 
 data = load_iris()
 X, y = data.data, data.target
@@ -10,13 +10,19 @@ X, y = data.data, data.target
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-param_grid = {
+param_distributions = {
     'n_estimators' : range(10,511,50),
     'max_depth' : [3, 4, 5, 6, None]
 }
 
 model = RandomForestClassifier(random_state=42)
-grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=10, scoring='accuracy')
+grid_search = RandomizedSearchCV(
+    estimator=model,
+    param_distributions=param_distributions,
+    n_iter=10,
+    cv=10,
+    scoring='accuracy',
+    random_state=42)
 grid_search.fit(X_train, y_train)
 
 print(f"Najlepsze parametry: {grid_search.best_params_}")
