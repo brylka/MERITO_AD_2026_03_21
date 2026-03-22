@@ -23,4 +23,5 @@ grid_search = GridSearchCV(
 )
 grid_search.fit(X_train, y_train)
 
-print(f"")
+print(f"Najlepsze parametry: {grid_search.best_params_}")
+print(f"Najlepsza dokładność: {grid_search.best_score_}")
