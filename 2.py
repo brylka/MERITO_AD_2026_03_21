@@ -11,6 +11,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 n_trees_range = [10, 25, 50, 100, 150, 200, 300, 500, 750, 1000]
+max_depth_range = [3, 4, 5, 6, None]
 train_scores = []
 test_scores = []
 oob_scores = []
@@ -18,16 +19,18 @@ oob_scores = []
 # wymień RandomForest na XGBoost
 # Dodatkowe: Porównanie RandomForest oraz XGBoost zależne od ilości drzew
 
-for n_trees in n_trees_range:
-    random_forest = RandomForestClassifier(
-        n_estimators=n_trees,
-        oob_score=True,
-        random_state=42)
-    random_forest.fit(X_train, y_train)
+for max_depth in max_depth_range:
+    for n_trees in n_trees_range:
+        random_forest = RandomForestClassifier(
+            n_estimators=n_trees,
+            max_depth=max_depth,
+            oob_score=True,
+            random_state=42)
+        random_forest.fit(X_train, y_train)
 
-    train_scores.append(random_forest.score(X_train, y_train))
-    test_scores.append(random_forest.score(X_test, y_test))
-    oob_scores.append(random_forest.oob_score_)
+        train_scores.append(random_forest.score(X_train, y_train))
+        test_scores.append(random_forest.score(X_test, y_test))
+        oob_scores.append(random_forest.oob_score_)
 
 plt.plot(n_trees_range, train_scores, 'b-o', label="treningowa")
 plt.plot(n_trees_range, test_scores, 'r-s', label="testowa")
